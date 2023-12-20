@@ -1,0 +1,80 @@
+Python 2.7.8 (default, Jun 30 2014, 16:08:48) [MSC v.1500 64 bit (AMD64)] on win32
+Type "copyright", "credits" or "license()" for more information.
+>>> 
+>>> class Book:
+    
+    def __init__(s,title,author,isbn):"""Initialize a book abject with title,author and isbn"""
+        s.title=title
+        s.author=author
+        s.isbn=isbn
+    def disp(s):
+        return f"Title: {s.title}, Author: {s.author}, ISBN: {s.isbn}"
+"display info about the book"""
+
+class EBook(Book):
+    def __init__(s,title,author,isbn,file_format):"""initialize an EBook object with additional fileformat(eg:pdf,epub)."""
+        s.file_format=file_format
+        
+        super().__init__(title,author,isbn)
+    def disp(s):"""override display to include fileformat(eg:pdf,epub)"""
+        super().disp()=book_info
+        return f"{book_info}, File Format: {s.file_format}"
+
+class Library:
+    def __init__(s):"""create a library object with an empty list to store books"""
+        s.books=[]
+    def add_book(self, book):
+        """Add a Book object to the library."""
+        if isinstance(book, Book):
+            self.books.append(book)
+        else:
+            raise ValueError("Only instances of the Book class can be added to the library.")
+
+    def display_all_books(self):
+        """Display information about all books in the library."""
+        if not self.books:
+            print("The library is empty.")
+        else:
+            for book in self.books:
+                print(book.display_info())
+
+    def search_book_by_title(self, title):
+        """Search for a book in the library by title."""
+        found_books = [book for book in self.books if book.title.lower() == title.lower()]
+        if found_books:
+            return found_books
+        else:
+            return None
+
+"""Create instances of Book and EBook"""
+book1 = Book("The Catcher in the Rye", "J.D. Salinger", "9780316769488")
+ebook1 = EBook("1984", "George Orwell", "9780451524935", "PDF")
+
+"""Create an instance of Library"""
+library = Library()
+
+"""Add books to the library"""
+library.add_book(book1)
+library.add_book(ebook1)
+"""Display all books in the library"""
+print("All books in the library:")
+library.display_all_books()
+
+"""Search for a book by title"""
+search_title = "1984"
+found_books = library.search_book_by_title(search_title)
+if found_books:
+    print(f"Found book(s) with title '{search_title}':")
+    for found_book in found_books:
+        print(found_book.display_info())
+else:
+    print(f"No book found with the title '{search_title}'.")
+        
+    
+    
+   
+            
+                
+
+
+    
